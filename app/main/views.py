@@ -3,8 +3,10 @@ from datetime import datetime
 from flask import render_template, session, redirect, url_for
 from . import main
 #from .forms import NameForm
+from flask_login import login_required
 from .. import db
-from ..models import User
+from ..models import User,Role,Permission
+from ..decorators import admin_required, permission_required
 
 
 
