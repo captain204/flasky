@@ -7,6 +7,7 @@ from .. import db
 from ..models import User
 
 
+
 @main.route('/', methods=['GET', 'POST'])
 def index():
     form = NameForm()
@@ -17,4 +18,21 @@ def index():
                         known=session.get('known', False),
                         current_time=datetime.utcnow())
 
-                        
+
+@main.route('/admin')
+@login_required
+@admin_required
+def for_admins_only():
+    return "For administrators!"
+
+
+@main.route('/moderate')
+@login_required
+@permission_required(Permission.MODERATE)
+def for_moderators_only():
+    return "For comment moderators!"
+
+
+
+
+

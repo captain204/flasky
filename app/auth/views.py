@@ -9,6 +9,7 @@ from ..email import send_email
 
 
 
+
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -86,11 +87,6 @@ def resend_confirmation():
                 'auth/email/confirm', user=current_user, token=token)
     flash('A new confirmation email has been sent to you by email.')
     return redirect(url_for('main.index'))
-
-
-
-
-
 
 
 
