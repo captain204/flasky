@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
 Hello,
 {% if current_user.is_authenticated %}
     {{ current_user.username }}
 {% else %}
 Stranger
-{% endif %}!
+
 
 <div>
     {% if current_user.can(Permission.WRITE_ARTICLES) %}
@@ -13,4 +14,13 @@ Stranger
     {% endif %}
 </div>
 
+{% include '_posts.html' %}
+<div class="pagination">
+    {{ macros.pagination_widget(pagination, '.index') }}
+</div>
+{% endif %}!
 
+{% block scripts %}
+{{super()}}
+{{pagedown.include_pagedown() }}
+{% endblock %}}
